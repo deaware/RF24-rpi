@@ -1,59 +1,46 @@
 RF24-rpi
 ========
 
-Breakout Raspberry Pi code from http://github.com/stanleyseow/RF24
+Fork from [https://github.com/jscrane/RF24-rpi](https://github.com/jscrane/RF24-rpi).
+And patch for Raspberry Pi 2.
 
-Local additions to Makefile and examples so they work out of the box
-with Arduino equivalents.
-
-=================
-
-this is library to use the nrf24l01 on the raspberry pi.
-
-it's based on the arduino lib from J. Coliz <maniacbug@ymail.com>.
-the library was berryfied by Purinda Gunasekara <purinda@gmail.com>.
-then forked from forked from github stanleyseow/RF24 by myself
 
 setup the library
 =================
 
 Clone or download this repo then go to folder
-cd RF24/librf24-rpi/librf24-bcm/
+
+```Shell
+git clone https://github.com/deaware/RF24-rpi.git
+cd RF24-rpi
+```
 
 then 
 
-make ; make install
+```Shell
+make
+make install
+```
 
-examples
-========
 
-go to examples subfolder then 
-make ; make install
-
-In my examples I used the NRF on ArduiPi Board 
-http://hallard.me/arduipi
-
-So on example file the instance is created as follow, change the pins according your connections
+Usage
+=====
 
 // Setup for GPIO 22 CE and CE1 CSN with SPI Speed @ 8Mhz
 RF24 radio(RPI_V2_GPIO_P1_15, RPI_V2_GPIO_P1_26, BCM2835_SPI_SPEED_8MHZ);  
 
 
-Pin are
-NRF24L01    RPI       P1 Connector
-nrf-vcc  = rpi-3v3        (01)
-nrf-gnd  = rpi-gnd        (06)
-nrf-ce   = rpi-ce1        (26)
-nrf-csn  = rpi-gpio22     (15)
-nrf-sck  = rpi-sckl       (23)
-nrf-mo   = rpi-mosi       (19)
-nrf-mi   = rpi-miso       (21)
+Wiring
+======
 
-known issues
-============
-none
+```Shell
+nRF24L01+                  Raspberry Pi 2
 
-contact
-=======
-Charles-Henri Hallard http://hallard.me
-
+GND          <----->       GND
+VCC          <----->       +3.3V
+CE           <----->       GPIO22 [15]
+CSN          <----->       GPIO7 [26]
+SCK          <----->       GPIO11 (SPI_CLK) [23]
+MOSI         <----->       GPIO10 (SPI_MOSI) [19]
+MISO         <----->       GPIO9 (SPI_MISO) [21]
+```
